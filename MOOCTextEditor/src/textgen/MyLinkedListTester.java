@@ -42,7 +42,6 @@ public class MyLinkedListTester {
 		list1.add(65);
 		list1.add(21);
 		list1.add(42);
-		
 	}
 
 	
@@ -112,7 +111,7 @@ public class MyLinkedListTester {
 		int a = list1.remove(0);
 		assertEquals("Remove: check a is correct ", 65, a);
 		assertEquals("Remove: check element 0 is correct ", (Integer)21, list1.get(0));
-		assertEquals("Remove: check size is correct ", 2, list1.size());
+		assertEquals("Remove: check size is correct ", 2, list1.size);
 		
 		// TODO: Add more tests here
 	}
@@ -124,6 +123,35 @@ public class MyLinkedListTester {
 	public void testAddEnd()
 	{
         // TODO: implement this test
+		try
+
+		{
+
+			list1.add(null);
+
+			fail("Check null value");
+
+		}
+
+		catch(NullPointerException err)
+
+		{
+
+
+
+			int prevSize = list1.size();
+
+			boolean added = list1.add(14);
+
+			int newSize = list1.size();
+
+			assertEquals("AddEnd: check element is added ", true, added);
+
+			assertEquals("AddEnd: check size is correct ", newSize, prevSize + 1);
+
+			assertEquals("AddEnd: check the correct element is added ", 14, (int)list1.get(prevSize));
+
+		}
 		
 	}
 
@@ -133,6 +161,13 @@ public class MyLinkedListTester {
 	public void testSize()
 	{
 		// TODO: implement this test
+		int list1Size = list1.size(); //3
+
+		int emptyListSize = emptyList.size(); //0
+
+		assertEquals("Size: check empty list size ", 0, emptyListSize);
+
+		assertEquals("Size: check list1 size ", 3, list1Size);
 	}
 
 	
@@ -145,18 +180,106 @@ public class MyLinkedListTester {
 	public void testAddAtIndex()
 	{
         // TODO: implement this test
-		
+		list1.add(2, 25);
+
+		assertEquals("addatIndex: check to see if 25 is added in index 2", (Integer) 25, list1.get(2));
+
+		assertEquals("addatIndex: check to see if 42 moved to index 3", (Integer) 42, list1.get(3));
+
+		try {
+
+			list1.add(3, null);
+
+			fail("Check out null");
+
+		}
+
+		catch (NullPointerException e) {
+
+
+
+		}
+
+		try {
+
+			list1.add(-1, 25);
+
+			fail("Check out of bounds");
+
+		}
+
+		catch (IndexOutOfBoundsException e) {
+
+		}
+
+		try {
+
+			list1.add(10, 25);
+
+			fail("Check out of bounds");
+
+		}
+
+		catch (IndexOutOfBoundsException e) {
+
+		}
+
 	}
+		
+	
 	
 	/** Test setting an element in the list */
 	@Test
 	public void testSet()
 	{
 	    // TODO: implement this test
+		list1.set(2, 35);
+
+		assertEquals("set: check to see if set functions sets properly at index", (Integer) 35, list1.get(2));
+
+		try {
+
+			list1.set(3, null);
+
+			fail("Check out null");
+
+		}
+
+		catch (NullPointerException e) {
+
+
+
+		}
+
+		try {
+
+			list1.set(-1, 25);
+
+			fail("Check out of bounds");
+
+		}
+
+		catch (IndexOutOfBoundsException e) {
+
+		}
+
+		try {
+
+			list1.add((list1.size+1), 25);
+
+			fail("Check out of bounds");
+
+		}
+
+		catch (IndexOutOfBoundsException e) {
+
+		}
+
+	}
 	    
 	}
 	
 	
 	// TODO: Optionally add more test methods.
 	
-}
+
